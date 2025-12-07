@@ -1,0 +1,4 @@
+# Lazy.nvim / plugin cache
+lazy-lock.json
+.plugin/
+.pack/
