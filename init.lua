@@ -69,70 +69,133 @@ require("lazy").setup({
         })
       end,
     },
-        -------------------------------------------------------
-    -- Telescope (Fuzzy Finder)
-    -------------------------------------------------------
-    {
-      "nvim-telescope/telescope.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      config = function()
-        require("telescope").setup({})
-      end,
+        -------------------------------------------------------
+
+    -- Telescope (Fuzzy Finder)
+
+    -------------------------------------------------------
+
+    {
+
+      "nvim-telescope/telescope.nvim",
+
+      dependencies = { "nvim-lua/plenary.nvim" },
+
+      config = function()
+
+        require("telescope").setup({})
+
+      end,
+
     },
-       -------------------------------------------------------
-    -- Autocomplete (nvim-cmp)
-    -------------------------------------------------------
-    {
-      "hrsh7th/nvim-cmp",
-      event = "InsertEnter",
-      dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "saadparwaiz1/cmp_luasnip",
-        "L3MON4D3/LuaSnip",
-      },
-      config = function()
-        local cmp = require("cmp")
-        local luasnip = require("luasnip")
-
-        cmp.setup({
-          snippet = {
-            expand = function(args)
-              luasnip.lsp_expand(args.body)
-            end,
-          },
-
-          mapping = cmp.mapping.preset.insert({
-            ["<Tab>"] = cmp.mapping.select_next_item(),
-            ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-            ["<Enter>"] = cmp.mapping.confirm({ select = true }),
-            ["<C-Space>"] = cmp.mapping.complete(),
-          }),
-
-          sources = cmp.config.sources({
-            { name = "nvim_lsp" },
-            { name = "buffer" },
-            { name = "path" },
-          }),
-        })
-      end,
+       -------------------------------------------------------
+
+    -- Autocomplete (nvim-cmp)
+
+    -------------------------------------------------------
+
+    {
+
+      "hrsh7th/nvim-cmp",  -- yashas told to use blink-cmp please implement this
+
+      event = "InsertEnter",
+
+      dependencies = {
+
+        "hrsh7th/cmp-nvim-lsp",
+
+        "hrsh7th/cmp-buffer",
+
+        "hrsh7th/cmp-path",
+
+        "saadparwaiz1/cmp_luasnip",
+
+        "L3MON4D3/LuaSnip",
+
+      },
+
+      config = function()
+
+        local cmp = require("cmp")
+
+        local luasnip = require("luasnip")
+
+
+
+        cmp.setup({
+
+          snippet = {
+
+            expand = function(args)
+
+              luasnip.lsp_expand(args.body)
+
+            end,
+
+          },
+
+
+
+          mapping = cmp.mapping.preset.insert({
+
+            ["<Tab>"] = cmp.mapping.select_next_item(),
+
+            ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+
+            ["<Enter>"] = cmp.mapping.confirm({ select = true }),
+
+            ["<C-Space>"] = cmp.mapping.complete(),
+
+          }),
+
+
+
+          sources = cmp.config.sources({
+
+            { name = "nvim_lsp" },
+
+            { name = "buffer" },
+
+            { name = "path" },
+
+          }),
+
+        })
+
+      end,
+
     },
-        -------------------------------------------------------
+        -------------------------------------------------------
+
     -- Auto pairs ( (), {}, [])
-    -------------------------------------------------------
-    {
-      "windwp/nvim-autopairs",
-      event = "InsertEnter",
-      config = function()
-        require("nvim-autopairs").setup({})
-        
-        -- Integrate with nvim-cmp
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        local cmp = require("cmp")
-        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-      end,
-    }, 
+    -------------------------------------------------------
+
+    {
+
+      "windwp/nvim-autopairs",
+
+      event = "InsertEnter",
+
+      config = function()
+
+        require("nvim-autopairs").setup({})
+
+        
+
+        -- Integrate with nvim-cmp
+
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
+        local cmp = require("cmp")
+
+        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+      end,
+
+    },
+
+ 
+
   },
 
   -- Which colorscheme to install by default
